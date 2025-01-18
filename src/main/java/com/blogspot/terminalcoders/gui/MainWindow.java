@@ -10,6 +10,7 @@ public class MainWindow extends JFrame {
     private LocalPathLocation localPathLocation;
     private RemotePathLocation remotePathLocation;
     private OS os;
+    LocalFileManager localFileManager;
 
     public MainWindow(String title) {
         super(title);
@@ -25,10 +26,19 @@ public class MainWindow extends JFrame {
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new GridLayout(1, 2));
 
-        localPathLocation.addUIComponent(topPanel);
-        remotePathLocation.addUIComponent(topPanel);
+        // Local File Manager
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new GridLayout(1, 2));
+
+        localFileManager = new LocalFileManager(localPathLocation.getLocalPath());
+
+        centerPanel.add(localFileManager);
+
+        topPanel.add(localPathLocation);
+        topPanel.add(remotePathLocation);
 
         this.add(topPanel, BorderLayout.NORTH);
+        this.add(centerPanel, BorderLayout.CENTER);
     }
 
     private void setOSandGetPath() {
