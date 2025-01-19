@@ -1,6 +1,10 @@
 package com.blogspot.terminalcoders.gui;
 
 import com.blogspot.terminalcoders.constants.OS;
+import com.blogspot.terminalcoders.gui.local.LocalFileManager;
+import com.blogspot.terminalcoders.gui.local.LocalPathLocation;
+import com.blogspot.terminalcoders.gui.remote.RemoteFileManager;
+import com.blogspot.terminalcoders.gui.remote.RemotePathLocation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +14,8 @@ public class MainWindow extends JFrame {
     private LocalPathLocation localPathLocation;
     private RemotePathLocation remotePathLocation;
     private OS os;
-    LocalFileManager localFileManager;
+    private LocalFileManager localFileManager;
+    private RemoteFileManager remoteFileManager;
 
     public MainWindow(String title) {
         super(title);
@@ -31,8 +36,10 @@ public class MainWindow extends JFrame {
         centerPanel.setLayout(new GridLayout(1, 2));
 
         localFileManager = new LocalFileManager(localPathLocation.getLocalPath());
+        remoteFileManager = new RemoteFileManager(remotePathLocation.getRemotePath());
 
         centerPanel.add(localFileManager);
+        centerPanel.add(remoteFileManager);
 
         topPanel.add(localPathLocation);
         topPanel.add(remotePathLocation);

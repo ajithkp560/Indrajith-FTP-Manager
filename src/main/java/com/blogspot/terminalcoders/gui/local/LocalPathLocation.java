@@ -1,4 +1,4 @@
-package com.blogspot.terminalcoders.gui;
+package com.blogspot.terminalcoders.gui.local;
 
 import com.blogspot.terminalcoders.constants.Fonts;
 

@@ -1,4 +1,4 @@
-package com.blogspot.terminalcoders.gui;
+package com.blogspot.terminalcoders.gui.remote;
 
 import com.blogspot.terminalcoders.constants.Fonts;
 
@@ -28,5 +28,10 @@ public class RemotePathLocation extends JPanel {
 
     public void setLocalPath(String path) {
         remotePath.setText(path);
+    }
+
+
+    public JTextField getRemotePath() {
+        return this.remotePath;
     }
 }

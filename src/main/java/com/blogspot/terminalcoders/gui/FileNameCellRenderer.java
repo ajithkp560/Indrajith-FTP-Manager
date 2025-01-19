@@ -1,10 +1,11 @@
 package com.blogspot.terminalcoders.gui;
 
+import com.blogspot.terminalcoders.gui.local.LocalFileTable;
+
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class FileNameCellRenderer implements TableCellRenderer {
     @Override

@@ -1,6 +1,5 @@
-package com.blogspot.terminalcoders.gui;
+package com.blogspot.terminalcoders.gui.local;
 
-import com.blogspot.terminalcoders.gui.MainWindow;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,13 +10,13 @@ import java.io.IOException;
 public class LocalFileManager extends JPanel {
     private File location;
     private JScrollPane scrollPane;
-    private JTextField localFile;
+    private JTextField localPathField;
     private LocalFileTable localFileTable;
 
-    public LocalFileManager(JTextField localFile) {
-        this.localFile = localFile;
-        this.location = new File(localFile.getText());
-        this.localFileTable = new LocalFileTable(localFile);
+    public LocalFileManager(JTextField localPathField) {
+        this.localPathField = localPathField;
+        this.location = new File(localPathField.getText());
+        this.localFileTable = new LocalFileTable(localPathField);
         this.localFileTable.setCurrentPath();
 
 
@@ -43,8 +42,8 @@ public class LocalFileManager extends JPanel {
                     if (column == 0 && e.getClickCount() == 2) { // Navigate folder
                         if (selectedFile.isDirectory()) {
                             try {
-                                localFile.setText(selectedFile.getCanonicalPath());
-                                location = new File(localFile.getText());
+                                localPathField.setText(selectedFile.getCanonicalPath());
+                                location = new File(localPathField.getText());
                                 localFileTable.setCurrentPath();
                             } catch (IOException ex) {
                                 throw new RuntimeException(ex);

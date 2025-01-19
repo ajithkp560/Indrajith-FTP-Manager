@@ -25,7 +25,7 @@ public class Main {
 
     private static void createAndShowGUI() {
         MainWindow mainWindow = new MainWindow("Indrajith FTP Manager");
-        mainWindow.setSize(800, 600);
+        mainWindow.setSize(1000, 650);
         mainWindow.setVisible(true);
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        mainWindow.setResizable(false);
