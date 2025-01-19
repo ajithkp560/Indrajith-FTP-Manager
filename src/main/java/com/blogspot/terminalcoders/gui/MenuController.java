@@ -1,15 +1,20 @@
 package com.blogspot.terminalcoders.gui;
 
+import com.blogspot.terminalcoders.gui.dialogbox.ConnectionDialogbox;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuController {
+    private JFrame mainWinow;
     private JMenuBar mainMenuBar;
     private JMenu fileMenu;
     private JMenuItem connectHostMenu, aboutMenu, exitMenu;
 
-    public MenuController() {
+    public MenuController(JFrame mainWinow) {
+        this.mainWinow = mainWinow;
+
         // Init Menu Bar
         mainMenuBar = new JMenuBar();
 
@@ -32,6 +37,9 @@ public class MenuController {
 
         // Add Close Action
         exitMenu.addActionListener(new ExitActionListener());
+
+        // Add Connect Action
+        connectHostMenu.addActionListener(new ConnectActionListener());
     }
 
     public JMenuBar getMainMenuBar() {
@@ -42,6 +50,14 @@ public class MenuController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
+        }
+    }
+
+    class ConnectActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ConnectionDialogbox dialog = new ConnectionDialogbox(mainWinow);
+            dialog.setVisible(true);
         }
     }
 }

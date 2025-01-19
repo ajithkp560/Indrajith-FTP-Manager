@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainWindow extends JFrame {
-    private MenuController menuController = new MenuController();
+    private MenuController menuController = new MenuController(this);
     private LocalPathLocation localPathLocation;
     private RemotePathLocation remotePathLocation;
     private OS os;
