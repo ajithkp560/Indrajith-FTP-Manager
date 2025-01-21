@@ -4,10 +4,13 @@ import com.blogspot.terminalcoders.ftp.LoginAction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class ConnectionDialogbox extends JDialog {
     private JTextField hostnameField;
     private JTextField usernameField;
+    private JTextField portField;
     private JPasswordField passwordField;
     private JLabel messageLabel;
 
@@ -29,9 +32,36 @@ public class ConnectionDialogbox extends JDialog {
         gbc.gridx = 1;
         add(hostnameField, gbc);
 
-        // Username
+        // Port
         gbc.gridx = 0;
         gbc.gridy = 1;
+        add(new JLabel("Port:"), gbc);
+        portField = new JTextField(20);
+        gbc.gridx = 1;
+        add(portField, gbc);
+
+        portField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar() >= '0' && e.getKeyChar() <= '9') {
+                    portField.setEditable(true);
+                } else portField.setEditable(false);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+
+        // Username
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         add(new JLabel("Username:"), gbc);
         usernameField = new JTextField(20);
         gbc.gridx = 1;
@@ -39,7 +69,7 @@ public class ConnectionDialogbox extends JDialog {
 
         // Password
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         add(new JLabel("Password:"), gbc);
         passwordField = new JPasswordField(20);
         gbc.gridx = 1;
@@ -50,7 +80,7 @@ public class ConnectionDialogbox extends JDialog {
         messageLabel.setForeground(Color.RED);
         messageLabel.setVisible(false);
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         add(messageLabel, gbc);
@@ -62,12 +92,12 @@ public class ConnectionDialogbox extends JDialog {
         buttonPanel.add(loginButton);
         buttonPanel.add(cancelButton);
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         add(buttonPanel, gbc);
 
         // Button Actions
-        loginButton.addActionListener(new LoginAction(hostnameField, usernameField, passwordField, messageLabel));
+        loginButton.addActionListener(new LoginAction(hostnameField, portField, usernameField, passwordField, messageLabel));
         cancelButton.addActionListener(e -> dispose());
     }
 
