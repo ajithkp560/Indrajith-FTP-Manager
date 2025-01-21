@@ -15,6 +15,10 @@ public class FTPConnection {
     JDialog parent;
     JLabel messageLabel;
 
+    FTPConnection() {
+        ftpClient.setConnectTimeout(5000);
+    }
+
     public void set(JTextField hostField, JTextField portField, JTextField usernameField, JTextField passwordFiled, JLabel messageLabel) {
         this.hostField = hostField;
         this.portField = portField;
@@ -56,11 +60,12 @@ public class FTPConnection {
                 for(FTPFile file: files) {
                     System.out.println(file.getName() + " - " + file.isFile());
                 }
+            } else {
+                messageLabel.setText("Failed to login");
             }
         } catch (IOException e) {
             JOptionPane.showMessageDialog(parent, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             messageLabel.setText("Error: " + e.getMessage());
-            throw new RuntimeException(e);
         }
         return false;
     }
